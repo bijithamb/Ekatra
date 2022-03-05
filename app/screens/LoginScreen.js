@@ -23,7 +23,17 @@ import {COLORS, Fonts} from '../styles/theme';
 class LoginScreen extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      email: '',
+      password: '',
+      showalert: false,
+    };
+  }
+
+  Validation() {
+    if (this.state.email == 'admin' && this.state.password == 'admin')
+      this.props.navigation.replace('Homescreen');
+    else Alert.alert('Please enter your correct email or password');
   }
 
   render() {
@@ -66,18 +76,20 @@ class LoginScreen extends Component {
                 placeholder="Username"
                 placeholderTextColor="#808e9b"
                 style={styles.input}
-                maxLength={10}
+                onChangeText={text => this.setState({email: text})}
               />
+
               <TextInput
                 placeholder="Password"
                 placeholderTextColor="#808e9b"
                 style={styles.input}
-                maxLength={10}
                 secureTextEntry={true}
+                textContentType="password"
+                onChangeText={text => this.setState({password: text})}
               />
 
               <TouchableOpacity
-                onPress={() => this.props.navigation.navigate('Homescreen')}
+                onPress={() => this.Validation()}
                 style={styles.loginButton}>
                 {this.state.isLoading ? (
                   <ActivityIndicator size="small" color="#ffff" />

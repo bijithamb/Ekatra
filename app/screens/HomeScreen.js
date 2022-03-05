@@ -106,7 +106,7 @@ class HomeScreen extends React.Component {
               <Image
                 resizeMode="cover"
                 resizeMethod="scale"
-                style={{width: 200, height: 200}}
+                style={{width: SIZES.width * 0.95, height: SIZES.height * 0.35}}
                 source={{uri: uri}}
               />
               <TouchableOpacity
